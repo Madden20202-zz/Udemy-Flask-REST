@@ -4,6 +4,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+# now the app has to be 
+# configured to use SQLAlchemy
+
+app.config['SQL_ALCHEMY_DATABASE_URL'] = 'sqlite:///myapp.sqlite'
 
 @app.route('/')
 def hello_world():
