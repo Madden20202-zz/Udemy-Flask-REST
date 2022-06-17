@@ -59,7 +59,7 @@ def make_new_order():
 
 # Now Delete
 @app.route('/orders/<order_id>', methods=["DELETE"])
-def delete_order():
+def delete_order(order_id):
     entry = my_app.query.get_or_404(order_id)
     db.session.delete(entry)
     db.session.commit()
