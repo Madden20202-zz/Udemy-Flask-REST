@@ -2,6 +2,7 @@ from flask import Flask
 # This will need to 
 # be imported via pip
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 # now the app has to be 
@@ -13,6 +14,7 @@ app.config['SQL_ALCHEMY_TRACK_MODIFICATION'] = false
 
 # this is the start of the database
 db = SQLAlchemy(app)
+ms
 
 # this class is now a model that can be called when needed
 class myApp(db.Model):
@@ -29,4 +31,4 @@ def hello_world():
 
 if __name__ == "__main__":
     db.create_all()
-    app.run()
+    app.run(debug=True)
