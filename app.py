@@ -58,9 +58,12 @@ def make_new_order():
     return redirect(url_for('get_orders'))
 
 # Now Delete
-@app.route('/orders', methods=["DELETE"])
+@app.route('/orders/<order_id>', methods=["DELETE"])
 def delete_order():
-    return 
+    entry = my_app.query.get_or_404(order_id)
+    db.session.delete(entry)
+    db.session.commit()
+    return redirect(url_for('get_orders'))
 
 if __name__ == "__main__":
     db.create_all()
