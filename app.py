@@ -8,14 +8,14 @@ app = Flask(__name__)
 # now the app has to be 
 # configured to use SQLAlchemy
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myapp.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_orders.db'
 
 # this is the start of the database
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 # this class is now a model that can be called when needed
-class myApp(db.Model):
+class my_app(db.Model):
     # name = database then where on the table plus value type
     order_id = db.Column(db.Integer, primary_key=True)
     # the 500 refers to the size of the string
@@ -36,7 +36,7 @@ def hello_world():
 # now make a route for a get method
 @app.route('/orders')
 def get_orders():
-    entries = myApp.query.all()
+    entries = my_app.query.all()
     result = my_app_schema.dump(entries)
     return jsonify(result)
 
@@ -48,7 +48,7 @@ def make_new_order():
     size = req['size']
     crust = req['crust']
     topping = req['topping']
-    new_entry = myApp(order_id=order_id, size=size, crust=crust, topping=topping)
+    new_entry = my_app(order_id=order_id, size=size, crust=crust, topping=topping)
 
     db.session.add(new_entry)
     db.session.commit()
