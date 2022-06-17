@@ -8,9 +8,7 @@ app = Flask(__name__)
 # now the app has to be 
 # configured to use SQLAlchemy
 
-app.config['SQL_ALCHEMY_DATABASE_URL'] = 'sqlite:///myapp.sqlite'
-# this silecnces the tracking notifications 
-app.config['SQL_ALCHEMY_TRACK_MODIFICATION'] = false
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myapp.sqlite'
 
 # this is the start of the database
 db = SQLAlchemy(app)
@@ -27,7 +25,7 @@ class myApp(db.Model):
 
 class MyAppSchema(ma.Schema):
     class Meta:
-        fields = []
+        fields = ('orderid', 'size', 'crust', 'topping')
 
 @app.route('/')
 def hello_world():
@@ -35,4 +33,4 @@ def hello_world():
 
 if __name__ == "__main__":
     db.create_all()
-    app.run(debug=True)
+    app.run()
