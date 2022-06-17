@@ -55,6 +55,11 @@ def make_new_order():
     db.session.commit()
     return redirect(url_for('get_orders'))
 
+# Now Delete
+@app.route('/orders', methods=["DELETE"])
+def delete_order():
+    return 
+    
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True, use_reloader=False)
