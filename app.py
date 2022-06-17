@@ -41,7 +41,7 @@ def get_orders():
     return jsonify(result)
 
 # now POST
-@app.route('/orders/new', methods='POST')
+@app.route('/orders/new', methods=['POST'])
 def make_new_order():
     req = request.get_json()
     order_id = req['order_id']
