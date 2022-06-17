@@ -8,6 +8,8 @@ app = Flask(__name__)
 # now the app has to be 
 # configured to use SQLAlchemy
 
+# always make sure this is exactly like this,
+# and always check this first if errors occur
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///pizza_orders.db'
 
 # this is the start of the database
@@ -59,7 +61,7 @@ def make_new_order():
 @app.route('/orders', methods=["DELETE"])
 def delete_order():
     return 
-    
+
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True, use_reloader=False)
