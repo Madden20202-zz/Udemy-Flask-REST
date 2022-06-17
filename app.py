@@ -66,7 +66,7 @@ def delete_order(order_id):
     return redirect(url_for('get_orders'))
 
 # Finally, PUT
-@app.route('/orders/<order_id', methods=["PUT"])
+@app.route('/orders/<order_id>', methods=["PUT"])
 def update_order(order_id):
     entry = my_app.query.get_or_404(order_id)
     req = request.get_json()
