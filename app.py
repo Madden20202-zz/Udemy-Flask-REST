@@ -18,6 +18,7 @@ db = SQLAlchemy(app)
 class myApp(db.Model):
     # name = database then where on the table plus value type
     order_id = db.Column(db.Integer, primary_key=True)
+    # the 500 refers to the size of the string
     size = db.Column(db.String(500))
     crust = db.Column(db.String(500))
     topping = db.Column(db.String(500))
@@ -27,4 +28,5 @@ def hello_world():
     return "Hello World"
 
 if __name__ == "__main__":
+    db.create_all()
     app.run()
