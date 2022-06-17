@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 # This will need to 
 # be imported via pip
 from flask_sqlalchemy import SQLAlchemy
@@ -39,6 +39,17 @@ def get_orders():
     entries = myApp.query.all()
     result = my_app_schema.dump(entries)
     return jsonify(result)
+
+# now POST
+@app.route('/orders/new', methods='POST')
+def make_new_order():
+    req = request.get_json()
+    order_id = req['order_id']
+    size = req['size']
+    crust = req['crust']
+    topping = req['topping']
+    new_entry = myApp(order_id=order_id, size=size, crust=crust, topping=topping)
+    return 
 
 if __name__ == "__main__":
     db.create_all()
