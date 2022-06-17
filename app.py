@@ -14,6 +14,11 @@ app.config['SQL_ALCHEMY_TRACK_MODIFICATION'] = false
 # this is the start of the database
 db = SQLAlchemy(app)
 
+# this class is now a model that can be called when needed
+class myApp(db.Model):
+    # name = database then where on the table
+    order_id = db.Column(db.Integer)
+
 @app.route('/')
 def hello_world():
     return "Hello World"
