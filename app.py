@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 
 # this class is now a model that can be called when needed
 class myApp(db.Model):
-    # name = database then where on the table
+    # name = database then where on the table plus value type
     order_id = db.Column(db.Integer)
 
 @app.route('/')
