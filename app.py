@@ -8,6 +8,8 @@ app = Flask(__name__)
 # now the app has to be 
 # configured to use SQLAlchemy
 
+# always make sure this is exactly like this,
+# and always check this first if errors occur
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///pizza_orders.db'
 
 # this is the start of the database
@@ -52,6 +54,14 @@ def make_new_order():
     new_entry = my_app(order_id=order_id, size=size, crust=crust, topping=topping)
 
     db.session.add(new_entry)
+    db.session.commit()
+    return redirect(url_for('get_orders'))
+
+# Now Delete
+@app.route('/orders/<order_id>', methods=["DELETE"])
+def delete_order(order_id):
+    entry = my_app.query.get_or_404(order_id)
+    db.session.delete(entry)
     db.session.commit()
     return redirect(url_for('get_orders'))
 
