@@ -8,10 +8,11 @@ app = Flask(__name__)
 # now the app has to be 
 # configured to use SQLAlchemy
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pizza_orders.db'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///pizza_orders.db'
 
 # this is the start of the database
 db = SQLAlchemy(app)
+# this is getting no values
 ma = Marshmallow(app)
 
 # this class is now a model that can be called when needed
@@ -25,7 +26,7 @@ class my_app(db.Model):
 
 class MyAppSchema(ma.Schema):
     class Meta:
-        fields = ('orderid', 'size', 'crust', 'topping')
+        fields = ['orderid', 'size', 'crust', 'topping']
 
 my_app_schema = MyAppSchema(many=True)
 
@@ -41,7 +42,7 @@ def get_orders():
     return jsonify(result)
 
 # now POST
-@app.route('/orders/new', methods=['POST'])
+@app.route('/orders', methods=['POST'])
 def make_new_order():
     req = request.get_json()
     order_id = req['order_id']
@@ -56,4 +57,4 @@ def make_new_order():
 
 if __name__ == "__main__":
     db.create_all()
-    app.run()
+    app.run(debug=True, use_reloader=False)
