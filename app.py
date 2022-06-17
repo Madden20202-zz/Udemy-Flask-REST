@@ -18,6 +18,9 @@ db = SQLAlchemy(app)
 class myApp(db.Model):
     # name = database then where on the table plus value type
     order_id = db.Column(db.Integer)
+    size = db.Column(db.String)
+    crust = db.Column(db.String)
+    topping = db.Column(db.String)
 
 @app.route('/')
 def hello_world():
