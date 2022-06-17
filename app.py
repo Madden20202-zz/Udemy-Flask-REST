@@ -31,6 +31,11 @@ class MyAppSchema(ma.Schema):
 def hello_world():
     return "Hello World"
 
+# now make a route for a get method
+@app.route('/orders')
+def get_orders():
+    return 
+
 if __name__ == "__main__":
     db.create_all()
     app.run()
