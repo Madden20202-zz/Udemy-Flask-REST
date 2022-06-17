@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 # This will need to 
 # be imported via pip
 from flask_sqlalchemy import SQLAlchemy
@@ -27,6 +27,8 @@ class MyAppSchema(ma.Schema):
     class Meta:
         fields = ('orderid', 'size', 'crust', 'topping')
 
+my_app_schema = MyAppSchema(many=True)
+
 @app.route('/')
 def hello_world():
     return "Hello World"
@@ -34,7 +36,9 @@ def hello_world():
 # now make a route for a get method
 @app.route('/orders')
 def get_orders():
-    return 
+    entries = myApp.query.all()
+    result = my_app_schema.dump(entries)
+    return jsonify(result)
 
 if __name__ == "__main__":
     db.create_all()
