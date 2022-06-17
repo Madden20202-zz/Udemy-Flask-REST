@@ -73,7 +73,8 @@ def update_order(order_id):
     entry.size = req['size']
     entry.crust = req['crust']
     entry.topping = req['topping']
-    
+
+    db.session.add(entry)
     db.session.commit()
     return redirect(url_for('get_orders'))
 
