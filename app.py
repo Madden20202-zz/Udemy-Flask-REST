@@ -25,6 +25,10 @@ class myApp(db.Model):
     crust = db.Column(db.String(500))
     topping = db.Column(db.String(500))
 
+class MyAppSchema(ma.Schema):
+    class Meta:
+        fields = []
+
 @app.route('/')
 def hello_world():
     return "Hello World"
