@@ -73,7 +73,6 @@ def update_order(order_id):
     entry.size = req['size']
     entry.crust = req['crust']
     entry.topping = req['topping']
-    new_entry = my_app(order_id=order_id, size=size, crust=crust, topping=topping)
 
     db.session.add(new_entry)
     db.session.commit()
