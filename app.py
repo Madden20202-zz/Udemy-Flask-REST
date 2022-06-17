@@ -1,4 +1,7 @@
 from flask import Flask
+# This will need to 
+# be imported via pip
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
