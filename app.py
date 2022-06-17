@@ -11,6 +11,9 @@ app.config['SQL_ALCHEMY_DATABASE_URL'] = 'sqlite:///myapp.sqlite'
 # this silecnces the tracking notifications 
 app.config['SQL_ALCHEMY_TRACK_MODIFICATION'] = false
 
+# this is the start of the database
+db = SQLAlchemy(app)
+
 @app.route('/')
 def hello_world():
     return "Hello World"
