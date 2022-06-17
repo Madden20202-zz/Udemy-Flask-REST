@@ -8,6 +8,8 @@ app = Flask(__name__)
 # configured to use SQLAlchemy
 
 app.config['SQL_ALCHEMY_DATABASE_URL'] = 'sqlite:///myapp.sqlite'
+# this silecnces the tracking notifications 
+app.config['SQL_ALCHEMY_TRACK_MODIFICATION'] = false
 
 @app.route('/')
 def hello_world():
