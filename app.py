@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 # This will need to 
 # be imported via pip
 from flask_sqlalchemy import SQLAlchemy
@@ -49,7 +49,10 @@ def make_new_order():
     crust = req['crust']
     topping = req['topping']
     new_entry = myApp(order_id=order_id, size=size, crust=crust, topping=topping)
-    return 
+
+    db.session.add(new_entry)
+    db.session.commit()
+    return redirect(url_for('get_order'))
 
 if __name__ == "__main__":
     db.create_all()
