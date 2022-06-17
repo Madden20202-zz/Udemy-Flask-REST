@@ -17,10 +17,10 @@ db = SQLAlchemy(app)
 # this class is now a model that can be called when needed
 class myApp(db.Model):
     # name = database then where on the table plus value type
-    order_id = db.Column(db.Integer)
-    size = db.Column(db.String)
-    crust = db.Column(db.String)
-    topping = db.Column(db.String)
+    order_id = db.Column(db.Integer, primary_key=True)
+    size = db.Column(db.String(500))
+    crust = db.Column(db.String(500))
+    topping = db.Column(db.String(500))
 
 @app.route('/')
 def hello_world():
