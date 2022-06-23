@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request, redirect, url_for
 # be imported via pip
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cors import cross_origin
 
 app = Flask(__name__)
 # now the app has to be 
@@ -38,6 +39,7 @@ def hello_world():
 
 # now make a route for a get method
 @app.route('/orders')
+@cross_origin()
 def get_orders():
     entries = my_app.query.all()
     result = my_app_schema.dump(entries)
